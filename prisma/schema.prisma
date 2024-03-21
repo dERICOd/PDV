@@ -12,3 +12,73 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id       String @id @default(uuid())
+  name     String @map("nome")
+  email    String @unique
+  password String @map("senha")
+
+  @@map("usuarios")
+}
+
+// model Categories {
+//   id          String    @id @default(uuid())
+//   description String    @map("descricao")
+//   Product     Product[]
+
+//   @@map("categorias")
+// }
+
+// model Product {
+//   id            String         @id @default(uuid())
+//   description   String         @map("descricao")
+//   amountProduct String?        @map("quantidade_de_produto")
+//   value         String         @map("Valor")
+//   categoryId    String         @map("categoria_id")
+//   productImage  String         @map("imagem")
+//   Category      Categories     @relation(fields: [categoryId], references: [id])
+//   OrderProduct  OrderProduct[]
+
+//   @@map("produtos")
+// }
+
+// model Client {
+//   id           String  @id @default(uuid())
+//   name         String  @map("nome")
+//   email        String
+//   phoneNumber  String  @map("numero_de_telefone")
+//   cpf          String  @unique
+//   cep          String
+//   road         String  @map("rua")
+//   houseNumber  String  @map("numero_da_casa")
+//   neighborhood String  @map("bairro")
+//   city         String  @map("cidade")
+//   state        String  @map("estado")
+//   Order        Order[]
+
+//   @@map("cliente")
+// }
+
+// model Order {
+//   id           String         @id @default(uuid())
+//   clientId     String         @map("cliente_id")
+//   observation  String         @map("observacao")
+//   amount       String         @map("valor_total")
+//   Client       Client         @relation(fields: [clientId], references: [id])
+//   OrderProduct OrderProduct[]
+
+//   @@map("pedidos")
+// }
+
+// model OrderProduct {
+//   id            String  @id @default(uuid())
+//   orderId       String  @map("pedido_id")
+//   productId     String  @map("produto_id")
+//   amountProduct Int     @map("quantidade_de_produto") @db.Integer
+//   value         String  @map("valor")
+//   Order         Order   @relation(fields: [orderId], references: [id])
+//   Product       Product @relation(fields: [productId], references: [id])
+
+//   @@map("pedido_produtos")
+// }
